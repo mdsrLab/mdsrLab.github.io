@@ -65,6 +65,17 @@ blockquote {
     border-bottom-left-radius: 5px;
 }
 
+.bibCite {
+    font-size: 16px;
+    font-style: italic;
+    display: block;
+    margin: 0;
+    padding: 10px;
+    text-align: left;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 ::-moz-selection {
     color: $white;
     background: $primary;
