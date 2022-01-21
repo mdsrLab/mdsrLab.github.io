@@ -53,6 +53,18 @@ blockquote {
     border-bottom-left-radius: 5px;
 }
 
+.captionNetwork {
+    font-size: 14px;
+    width: 130%;
+    font-style: italic;
+    display: block;
+    margin-left: -17%;
+    padding: 10px;
+    text-align: center;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
 ::-moz-selection {
     color: $white;
     background: $primary;
