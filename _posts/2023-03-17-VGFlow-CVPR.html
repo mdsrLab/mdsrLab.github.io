@@ -1,0 +1,68 @@
+---
+layout: post
+title: "VGFlow: Visibility guided Flow Network for Human Reposing"
+subtitle: "Accepted in CVPR, June 2023"
+date: 2023-03-17 10:45:13 
+background: '/img/posts/06.jpeg'
+---
+
+<img class="img-vton" src="/img/reposing_intro.png" alt="Reposing flow module" style="max-width: 100%;">
+<span class="caption text-muted">Human reposing involves changing the orientation of a
+    source image to a desired target pose. To get accurate results, we
+    learn to preserve the region visible (green) in the source image and
+    transfer the appropriate style to the invisible region (red)</span>
+
+<h2 class="section-heading">Abstract</h2>
+
+<p>The task of human reposing involves generating a realistic
+    image of a person standing in an arbitrary conceivable
+    pose. There are multiple difficulties in generating perceptually
+    accurate images, and existing methods suffer from
+    limitations in preserving texture, maintaining pattern coherence,
+    respecting cloth boundaries, handling occlusions,
+    manipulating skin generation, etc. These difficulties are further
+    exacerbated by the fact that the possible space of pose
+    orientation for humans is large and variable, the nature
+    of clothing items is highly non-rigid, and the diversity in
+    body shape differs largely among the population. To alleviate
+    these difficulties and synthesize perceptually accurate
+    images, we propose VGFlow. Our model uses a visibilityguided
+    flow module to disentangle the flow into visible and
+    invisible parts of the target for simultaneous texture preservation
+    and style manipulation. Furthermore, to tackle distinct
+    body shapes and avoid network artifacts, we also incorporate
+    a self-supervised patch-wise ”realness” loss to
+    improve the output. VGFlow achieves state-of-the-art results
+    as observed qualitatively and quantitatively on different
+    image quality metrics (SSIM, LPIPS, FID).</p>
+
+<h2 class="section-heading">Network architecture</h2>
+
+<img class="imgcss" src="/img/VGFlowModule.png" alt="Nework architecture">
+<span class="captionNetwork text-muted">VGFlow FlowVis module takes in concatenated I<sub>s</sub>, K<sub>s</sub> & K<sub>t</sub> as input. We predict two flow pyramids at multiple scales for different
+    visibility regions using a Unet architecture. Subsequently, these flow pyramids are combined using Gated Aggregation and upsampled
+    via Convex upsampling. Losses L<sub>1</sub>, L<sub>vgg</sub>, are imposed on the visible areas and L<sub>vgg</sub> , L<sub>sty</sub> are imposed on the invisible areas.</span>
+
+<h2 class="section-heading">Results</h2>
+
+<img class="imgcss" src="/img/singleViewResults3.png" alt="Nework architecture">
+<span class="captionNetwork text-muted">We underscore improvements along different qualitative aspects over previous works. We emphasize enhancement
+    in preserving pattern & segmentation (a), handling complex poses (b), design consistency (c), conserving text readability (d), reducing
+    bleeding, skin generation & identity reproduction (e), maintaining geometric integrity (f) and pattern coherence (g). (Best viewed in zoom)</span>
+
+
+<h2 class="section-heading">Resources</h2>
+
+<ul style="list-style-type:disc">
+    <li>Paper: <a href="https://arxiv.org/abs/2211.08540" style="color:blue"><u>arxiv</u></a></li>
+    <li>Results for comparison: <a href="https://drive.google.com/file/d/1QjpjodPwvmgTIT7de0D0POrrYe-N8vNS/view?usp=sharing" style="color:blue"><u>Zip file</u></a></li>
+  </ul>
+
+<h2 class="section-heading">Citation</h2>
+<p class="bibCite">@article{jain2022vgflow,<br>
+    title={VGFlow: Visibility guided Flow Network for Human Reposing},<br>
+    author={Jain, Rishabh and Singh, Krishna Kumar and Hemani, Mayur and Lu, Jingwan and Sarkar, Mausooom and Ceylan, Duygu and Krishnamurthy, Balaji},<br>
+    journal={arXiv preprint arXiv:2211.08540},<br>
+    year={2022}<br>
+    <br>
+}</p>
