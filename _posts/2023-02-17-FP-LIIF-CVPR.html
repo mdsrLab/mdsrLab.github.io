@@ -1,0 +1,66 @@
+---
+layout: post
+title: "Parameter Efficient Local Implicit Image Function Network for Face
+Segmentation"
+subtitle: "Accepted in CVPR, June 2023"
+date: 2023-03-16 10:45:13 
+background: '/img/posts/06.jpeg'
+---
+
+<img class="img-vton" src="/img/liifdiag.png" alt="FP-LIIF diagram" style="max-width: 100%;">
+<span class="caption text-muted">The simple architecture of Local Implicit Image representation base FP-LIIF: A light convolutional encoder of modified
+    resblocks followed by a pixel only MLP decoder</span>
+
+<h2 class="section-heading">Abstract</h2>
+
+<p>Face parsing is defined as the per-pixel labeling of images containing human faces. The labels are defined to
+    identify key facial regions like eyes, lips, nose, hair, etc.
+    In this work, we make use of the structural consistency
+    of the human face to propose a lightweight face-parsing
+    method using a Local Implicit Function network, FP-LIIF.
+    We propose a simple architecture having a convolutional
+    encoder and a pixel MLP decoder that uses 1/26th number of parameters compared to the state-of-the-art models
+    and yet matches or outperforms state-of-the-art models on
+    multiple datasets, like CelebAMask-HQ and LaPa. We do
+    not use any pretraining, and compared to other works, our
+    network can also generate segmentation at different resolutions without any changes in the input resolution. This
+    work enables the use of facial segmentation on low-compute
+    or low-bandwidth devices because of its higher FPS and
+    smaller model size.</p>
+
+<h2 class="section-heading">Network architecture</h2>
+
+<img class="imgcss" src="/img/Encoder-liif.png" alt="Nework architecture">
+<span class="captionNetwork text-muted">Encoder Architecture: It has three res-block groups. The first two (2,6) res-block groups, followed by a strided conv per group,
+    are mainly used to reduce the spatial dimensions of the activation maps. The final group of res-blocks creates the grid of features vectors
+    Z. Notice each res-block group has a group-level residual connection.</span>
+
+<img class="imgcss" src="/img/decoder-liif.png" alt="Nework architecture">
+<span class="captionNetwork text-muted">Decoder Architecture: Our decoder takes in the feature grid Z from the encoder and performs unfolding and global avg-pooling
+    as shown in the figure. A two layer fully connected MLP is used to bring down the number of channels in the unfolded volume. This is
+    upsampled and concatenated with global pool feature g and positional encoding. Finally a four layer MLP is applied per spatial location to
+    generate the class-wize probability distribution.</span>
+
+<h2 class="section-heading">Results</h2>
+
+<img class="imgcss" src="/img/Celeb-we-better.png" alt="Results">
+<span class="captionNetwork text-muted">Visualization of a few results in CelebAMask-HQ
+    dataset. The difference between DML CSR and our results are
+    highlighted. The cloth region in a), b), eyes in b),c) d) and nose in
+    d),e) are better predicted by FP-LIIF</span>
+
+
+<h2 class="section-heading">Resources</h2>
+
+<ul style="list-style-type:disc">
+    <li>Paper: <a href="https://arxiv.org/abs/2303.15122" style="color:blue"><u>arxiv</u></a></li>
+  </ul>
+
+<h2 class="section-heading">Citation</h2>
+<p class="bibCite">@misc{sarkar2023parameter,<br>
+    title={Parameter Efficient Local Implicit Image Function Network for Face Segmentation}, <br>
+    author={Mausoom Sarkar and Nikitha SR and Mayur Hemani and Rishabh Jain and Balaji Krishnamurthy},<br>
+    year={2023},<br>
+    eprint={2303.15122},<br>
+    archivePrefix={arXiv},<br>
+    primaryClass={cs.CV}}<br></p>
