@@ -1,0 +1,80 @@
+---
+layout: post
+title: "UMFuse: Unified Multi View Fusion for Human Editing applications"
+subtitle: "Accepted in ICCV, October 2023"
+date: 2023-08-13 10:45:13 
+background: '/img/posts/06.jpeg'
+---
+
+<img class="imgcss" src="/img/teacherDiagram.png" alt="teacher Diagram">
+<span class="caption text-muted">To remedy the shortcomings of single view person image generation, we propose merging information from multiple source
+    images. In Multi-view Human Reposing, given multiple images of a person, we generate a new image in the desired target pose. In Mix and Match Human Image Generation, we model all of the images in a tuple (id, top, bottom, pose) jointly to synthesise the final output</span>
+
+<h2 class="section-heading">Abstract</h2>
+
+<p>Numerous pose-guided human editing methods have
+    been explored by the vision community due to their extensive
+    practical applications. However, most of these methods
+    still use an image-to-image formulation in which a single
+    image is given as input to produce an edited image as output.
+    This objective becomes ill-defined in cases when the
+    target pose differs significantly from the input pose. Existing
+    methods then resort to in-painting or style transfer to
+    handle occlusions and preserve content. In this paper, we
+    explore the utilization of multiple views to minimize the issue
+    of missing information and generate an accurate representation
+    of the underlying human model. To fuse knowledge
+    from multiple viewpoints, we design a multi-view fusion
+    network that takes the pose key points and texture from
+    multiple source images and generates an explainable perpixel
+    appearance retrieval map. Thereafter, the encodings
+    from a separate network (trained on a single-view human
+    reposing task) are merged in the latent space. This enables
+    us to generate accurate, precise, and visually coherent images
+    for different editing tasks. We show the application of
+    our network on two newly proposed tasks - Multi-view human
+    reposing and Mix&Match Human Image generation.
+    Additionally, we study the limitations of single-view editing
+    and scenarios in which multi-view provides a better alternative.</p>
+
+<h2 class="section-heading">Network architecture</h2>
+
+<img class="imgcss" src="/img/UMFuseArchitecture.png" alt="Nework architecture">
+<span class="captionNetwork text-muted">UMFuse framework: (A) is the single view PHIG network on top of which the UMFuse framework operates. The source image
+    and its keypoints along with the target keypoints are used to produce warped images and a visibility map (I<sub>w</sub><sup>v</sup> ,I<sub>w</sub><sup>i</sup>
+     ,V<sub>t</sub>). These are used to
+    obtain the texture encoding at different scales l (e<sub>t,l</sub>), and the source and target poses are used to obtain the pose encoding e<sub>p</sub>. Together
+    they are used to render the output with a GAN-based renderer. (B) Shows the UMFuse adaptation for the single view network. The
+    multiple source images and poses are passed individually to the warping and visibility prediction module to obtain multiple warped images
+    and visibility maps, and from those, multiple texture-encoding vectors. Likewise, the source poses paired with the target pose are used to
+    obtain multiple pose encoding vectors. These are merged in an affine combination using the predicted Appearance Retrieval Maps(s<sub>1-3</sub>).
+    These maps are obtained using the Multi-view Fusion module and are a key contribution of the UMFuse framework.</span>
+
+<h2 class="section-heading">Results</h2>
+
+<img class="imgcss" src="/img/comparison_multiView.png" alt="Results1">
+<span class="captionNetwork text-muted">Here, we show incremental improvements gained by the network after the addition of multiple images. Gen1 is generated using
+    only View1 (repeated thrice). Gen2 is generated using View1 and View2 pair with ArMap2 showing the attribution map using red and
+    green colors respectively. Gen3 is obtained using all the 3 images and ArMap3 encodes the weights in RGB respectively.</span>
+
+<img class="img-vton" src="/img/multiViewVitonFinal.png" alt="Results2" style="max-width: 100%;">
+<span class="captionNetwork text-muted">Qualitative Results for Mix & Match Human Image Generation showing realistic generation quality while preserving bodyshape(a), 
+    modelling complex pose(b), complicated design and texture of cloth(c), heavy occlusions(d), missing information(e), multiple clothing garments with accessories(f). 
+    Additional results can be found in the supplemental material</span>
+
+
+<h2 class="section-heading">Resources</h2>
+
+<ul style="list-style-type:disc">
+    <li>Paper: <a href="https://arxiv.org/abs/2211.10157" style="color:blue"><u>arxiv</u></a></li>
+    <li>Datasplit and Results for comparison: <a href="https://drive.google.com/file/d/15JTFT6aDliRck-isjpHbWlHARremvCzT/view?usp=sharing" style="color:blue"><u>Zip file</u></a></li>
+  </ul>
+
+<h2 class="section-heading">Citation</h2>
+<p class="bibCite">@article{jain2022umfuse,<br>
+    title={UMFuse: Unified Multi View Fusion for Human Editing applications},<br>
+    author={Jain, Rishabh and Hemani, Mayur and Ceylan, Duygu and Singh, Krishna Kumar and Lu, Jingwan and Sarkar, Mausoom and Krishnamurthy, Balaji},<br>
+    journal={arXiv preprint arXiv:2211.10157},<br>
+    year={2022}<br>
+  }
+</p>
