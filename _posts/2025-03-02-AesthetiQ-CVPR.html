@@ -1,0 +1,74 @@
+---
+layout: post
+title: "AesthetiQ: Enhancing Graphic Layout Design via Aesthetic-Aware Preference Alignment"
+subtitle: "Accepted in CVPR, June 2025"
+date: 2025-03-01 10:45:13 
+background: '/img/posts/06.jpeg'
+---
+
+<img class="img-vton" src="/img/layout_intro.png" alt="AAPA motivation" style="max-width: 100%;">
+<span class="caption text-muted">Existing cross-entropy loss based methods penalize 
+    element misalignment heavily while preferential tuning via AAPA 
+    better capture aesthetic nuances in layouts</span>
+
+<h2 class="section-heading">Abstract</h2>
+
+<p>Visual layouts are essential in graphic design fields such as advertising, posters, and web interfaces. The application
+of generative models for content-aware layout generation has recently gained traction. However, these models fail
+to understand the contextual aesthetic requirements of layout design and do not align with human-like preferences,
+primarily treating it as a prediction task without considering the final rendered output. To overcome these problems,
+we offer Aesthetic-Aware Preference Alignment (AAPA),a novel technique to train a Multi-modal 
+Large Language Model (MLLM) for layout prediction that uses MLLM's aesthetic preferences for Direct 
+Preference Optimization over graphic layouts. We propose a data filtering protocol utilizing our layout-quality 
+heuristics for AAPA to ensure training happens on high-quality layouts. 
+Additionally, we introduce a novel evaluation metric that uses another MLLM to compute the win rate of the generated layout against
+the ground-truth layout based on aesthetics criteria. We also demonstrate the applicability of AAPA for MLLMs of
+varying scales (1B to 8B parameters) and LLM families (Qwen, Phi, InternLM). By conducting thorough 
+qualitative and quantitative analyses, we verify the efficacy of our
+approach on two challenging benchmarks - Crello and Webui, showcasing 17%, and 16% improvement over current
+State-of-The-Art methods, thereby highlighting the potential of MLLMs in aesthetic-aware layout generation.</p>
+
+<h2 class="section-heading">Network architecture</h2>
+
+<img class="imgcss" src="/img/layoutArchitecture.png" alt="Nework architecture">
+<span class="captionNetwork text-muted">
+    The training for the aesthetic layout prediction task consists of the following steps: 
+    1. <strong>Vision Encoder</strong>: Design elements (images and text) are processed to generate image and text embeddings. 
+    2. <strong>AesthetiQ Model Prediction</strong>: Embeddings are passed to the AesthetiQ model, which predicts layout coordinates. 
+    3. <strong>Training with Cross-Entropy Loss</strong>: The predicted layout is compared with the ground truth and trained using cross-entropy loss. 
+    4. <strong>Sampling for Comparison</strong>: Multiple layout predictions are generated using AesthetiQ inference. 
+    5. <strong>Pair Selection and Quality Filtering</strong>: We filter the data based on quality heuristics to ensure layout quality in samples. 
+    6. <strong>Judging by ViLA</strong>: The ViLA model compares layout pairs and selects the better one based on aesthetic preferences. 
+    7. <strong>Aesthetic Preference Optimization (AAPA)</strong>: Feedback from ViLA is used to fine-tune the AesthetiQ model for aesthetic optimization.
+</span>
+
+<h2 class="section-heading">Results</h2>
+
+<img class="imgcss" src="/img/layoutResults.png" alt="Results">
+<span class="captionNetwork text-muted">Qualitative comparison of our model, AesthetiQ, against recent methods FlexDM, LACE, 
+    and LayoutNUWA. Despite the challenge of arranging numerous elements, AesthetiQ consistently achieves
+     superior layout quality. In row (a), AesthetiQ effectively places text within salient regions, maintaining clear 
+     hierarchy and avoiding overlaps, which enhances readability and aesthetic appeal. In row (b), it 
+     achieves precise alignment across elements and optimally positions diverse shapes, preserving a cohesive
+      visual structure. Row (c) showcases AesthetiQ's advanced semantic understanding, generating a visually
+       balanced and aesthetically pleasing layout. Overall, AesthetiQ consistently outperforms competitors 
+       in creating coherent, well-structured designs that align with human aesthetic preferences.</span>
+
+
+<!-- <h2 class="section-heading">Resources</h2>
+
+<ul style="list-style-type:disc">
+    <li>Paper: <a href="https://openaccess.thecvf.com/content/CVPR2023/papers/Jain_VGFlow_Visibility_Guided_Flow_Network_for_Human_Reposing_CVPR_2023_paper.pdf" style="color:blue"><u>CVPR</u></a></li>
+    <li>Supplementary: <a href="https://openaccess.thecvf.com/content/CVPR2023/supplemental/Jain_VGFlow_Visibility_Guided_CVPR_2023_supplemental.pdf" style="color:blue"><u>CVPR_supplementary</u></a></li>
+    <li>Video: <a href="https://www.youtube.com/watch?v=X8qQleOAXqI" style="color:blue"><u>YouTube</u></a></li>
+    <li>Results for comparison: <a href="https://drive.google.com/file/d/1QjpjodPwvmgTIT7de0D0POrrYe-N8vNS/view?usp=sharing" style="color:blue"><u>Zip file</u></a></li>
+  </ul>
+
+<h2 class="section-heading">Citation</h2>
+<p class="bibCite">@inproceedings{jain2023vgflow,<br>
+    title={VGFlow: Visibility guided Flow Network for Human Reposing},<br>
+    author={Jain, Rishabh and Singh, Krishna Kumar and Hemani, Mayur and Lu, Jingwan and Sarkar, Mausoom and Ceylan, Duygu and Krishnamurthy, Balaji},<br>
+    booktitle={Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition},<br>
+    pages={21088--21097},<br>
+    year={2023}}<br>
+</p> -->
